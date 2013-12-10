@@ -2,7 +2,7 @@
 
 ## Info
 
-The TwoStep board utilizes the xboot bootloader. Further information about this may be found on alexforencich's github page.  This bootloader should already be installed on your TwoStep board if you purchased one so most folks will not need it. If you have elected to solder your own board together however, you will need to install it. Binaries of the TwoStep bootloader may be found on http://macpod.net if you do not care to compile it yourself.
+The TwoStep board utilizes the xboot bootloader. Further information about this may be found on [alexforencich's github page](https://github.com/alexforencich/xboot).  This bootloader should already be installed on your TwoStep board if you purchased one so most folks will not need it. If you have elected to solder your own board together however, you will need to install it. Binaries of the TwoStep bootloader may be found on http://macpod.net if you do not care to compile it yourself.
 
 
 ## Compiling The Bootloader
