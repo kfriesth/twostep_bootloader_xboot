@@ -1,3 +1,78 @@
+# TwoStep Stepper Motor Controller Board Bootloader
+
+## Info
+
+The TwoStep board utilizes the xboot bootloader. Further information about this may be found on alexforencich's github page.  This bootloader should already be installed on your TwoStep board if you purchased one so most folks will not need it. If you have elected to solder your own board together however, you will need to install it. Binaries of the TwoStep bootloader may be found on http://macpod.net if you do not care to compile it yourself.
+
+
+## Compiling The Bootloader
+
+    make twostep_x16e5.conf.mk
+
+    
+## Installing The Bootloader
+You will need an avr programmer capable of programming in PDI mode such as the avrispmkii.
+
+    make program
+
+
+## Using The Bootloader
+To program new twostep firmwares use the following process
+
+1. Obtain a recent version of avrdude (6.0.1 or higher should work)
+2. Obtain a 3.3v or 5v FTDI cable such as the "FTDI Basic Breakout" boards offered by sparkfun. The pinout must be in the order of (GND, CTS, 5/3.3v, TXO, RXI, and DTR.
+3. Flip CFG DIP C to ON (Towards the inside of the board).
+4. Disconnect the 6-pin data cable that connects the TwoStep board to the LaserShark board.
+5. If you would like to remove the 3-pin power cable that connects the TwoStep board to the LaserShark board, first remove this cable and then use a solder blob to jump the LS_VCC jumper. ***IMPORTANT*** With this solder blob jumped, never connect both the FTDI board and LaserShark 3-pin power cable at the same time!***
+6. Run the following: 
+
+    ***DO NOT USE THE -e OPTION. THIS WILL ERASE THE BOOTLOADER!***
+
+
+    `avrdude -D -p atxmega16e5 -P /dev/ttyUSB0 -c avr109 -b 115200 -U flash:w:twostep_code.hex`
+
+
+    The output should look as follows:
+    ```
+    Connecting to programmer: .
+    Found programmer: Id = "XBoot++"; type = S
+        Software Version = 1.7; No Hardware Version given.
+    Programmer supports auto addr increment.
+    Programmer supports buffered memory access with buffersize=128 bytes.
+    
+    Programmer supports the following devices:
+        Device code: 0x7b
+    
+    avrdude: AVR device initialized and ready to accept instructions
+    
+    Reading | ################################################## | 100% 0.00s
+    
+    avrdude: Device signature = 0x1e9445
+    avrdude: reading input file "twostep_code.hex"
+    avrdude: input file twostep_code.hex auto detected as Intel Hex
+    avrdude: writing flash (642 bytes):
+    
+    Writing | ################################################## | 100% 0.13s
+    
+    avrdude: 642 bytes of flash written
+    avrdude: verifying flash memory against twostep_code.hex:
+    avrdude: load data flash data from input file twostep_code.hex:
+    avrdude: input file twostep_code.hex auto detected as Intel Hex
+    avrdude: input file twostep_code.hex contains 642 bytes
+    avrdude: reading on-chip flash data:
+    
+    Reading | ################################################## | 100% 0.08s
+    
+    avrdude: verifying ...
+    avrdude: 642 bytes of flash verified
+    
+    avrdude done.  Thank you.
+    ```
+7. Flip CFG DIP C to OFF (Towards the outside of the board).
+8. Reset the TwoStep board by pressing the reset button.
+9. Remove the FTDI cable, reinstall the LaserShark data cable, and then reinstall the LaserShark power cable. That's it!
+
+
 # XBoot Readme
 
 See the XBoot wiki for the latest version of this information:
@@ -80,6 +155,7 @@ XBoot compatible.
     * atxmega32d4
     * atxmega64d3
     * atxmega64d4
+    * atxmega16e5
     * atxmega128d3
     * atxmega128d4
     * atxmega192d3
