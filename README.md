@@ -15,11 +15,11 @@ You will need an avr programmer capable of programming in PDI mode such as the a
 
 If you compiled the bootloader from source simply run:
 
-    `make program`
+    make program
 
 Otherwise if you are installing a pre-made binary run:
 
-    `avrdude -p atxmega16e5 -P usb -c avrispmkii -U boot:w:twostep_xboot-boot.hex -U fuse2:w:0xBF:m`
+    avrdude -p atxmega16e5 -P usb -c avrispmkii -U boot:w:twostep_xboot-boot.hex -U fuse2:w:0xBF:m
 
 
 ## Using The Bootloader
@@ -35,7 +35,7 @@ To program new twostep firmwares use the following process
     ***DO NOT USE THE -e OPTION. THIS WILL ERASE THE BOOTLOADER!***
 
 
-    `avrdude -D -p atxmega16e5 -P /dev/ttyUSB0 -c avr109 -b 115200 -U flash:w:twostep_code.hex`
+   `avrdude -D -p atxmega16e5 -P /dev/ttyUSB0 -c avr109 -b 115200 -U flash:w:twostep_code.hex`
 
 
     The output should look as follows:
