@@ -239,7 +239,7 @@
 
 #ifdef __AVR_XMEGA__
 
-#if (UART_NUMBER == 0)
+#if (UART_NUMBER == 0 && (!defined(UART_REMAP) || UART_PORT_NAME != D))
 #define UART_RX_PIN             2
 #define UART_TX_PIN             3
 #else

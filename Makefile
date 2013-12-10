@@ -58,6 +58,7 @@
 ## MCU = atxmega32d4
 ## MCU = atxmega64d3
 ## MCU = atxmega64d4
+## MCU = atxmega16e5
 ## MCU = atxmega128d3
 ## MCU = atxmega128d4
 ## MCU = atxmega192d3
@@ -531,7 +532,7 @@ endif
 # Sizes in bytes, not works (datasheet generally in words)
 # xmega
 MCU_S = $(subst atxmega,x,$(MCU))
-ifneq ($(filter $(MCU_S), x16a4 x16d4 x16a4u),)
+ifneq ($(filter $(MCU_S), x16a4 x16d4 x16a4u, x16e5),)
   BOOT_SECTION_START		=0x004000
 endif
 ifneq ($(filter $(MCU_S), x32a4 x32d4 x32a4u),)

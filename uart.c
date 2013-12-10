@@ -71,6 +71,12 @@ ISR(UART_DEVICE_TXC_ISR)
 void uart_init(void)
 {
 #ifdef __AVR_XMEGA__
+	#ifdef UART_REMAP
+	#if (UART_PORT_NAME == D)
+    	UART_PORT.REMAP |= PORT_USART0_bm;
+	#endif
+	#endif
+
         UART_PORT.DIRSET = (1 << UART_TX_PIN);
         UART_DEVICE.BAUDCTRLA = (UART_BSEL_VALUE & USART_BSEL_gm);
         UART_DEVICE.BAUDCTRLB = ((UART_BSCALE_VALUE << USART_BSCALE_gp) & USART_BSCALE_gm) | ((UART_BSEL_VALUE >> 8) & ~USART_BSCALE_gm);
