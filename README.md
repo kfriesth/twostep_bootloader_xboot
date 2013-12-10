@@ -13,7 +13,13 @@ The TwoStep board utilizes the xboot bootloader. Further information about this 
 ## Installing The Bootloader
 You will need an avr programmer capable of programming in PDI mode such as the avrispmkii.
 
-    make program
+If you compiled the bootloader from source simply run:
+
+    `make program`
+
+Otherwise if you are installing a pre-made binary run:
+
+    `avrdude -p atxmega16e5 -P usb -c avrispmkii -U boot:w:twostep_xboot-boot.hex -U fuse2:w:0xBF:m`
 
 
 ## Using The Bootloader
