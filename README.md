@@ -35,7 +35,7 @@ To program new twostep firmwares use the following process
     ***DO NOT USE THE -e OPTION. THIS WILL ERASE THE BOOTLOADER!***
 
 
-   `avrdude -D -p atxmega16e5 -P /dev/ttyUSB0 -c avr109 -b 115200 -U flash:w:twostep_code.hex`
+   `avrdude -D -p atxmega16e5 -P /dev/ttyUSB0 -c avr109 -b 115200 -U flash:w:twostep_firmware.hex`
 
 
     The output should look as follows:
